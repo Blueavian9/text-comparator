@@ -3,6 +3,24 @@ import React, { useState } from "react";
 function App() {
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [comparisonResult, setComparisonResult] = useState(null); // To store the result of comparison 
+
+const handleCompare = () => {
+  setLoading(true);
+  setComparisonResult("");
+
+  // Simulating a delay for comparison (like an API call)
+  setTimeout(() => {
+    // Example comparison logic: checking if texts are the same 
+    if (text1 === text2) {
+    setComparisonResult("The texts are identical.");
+    } else {
+      setComparisonResult("The texts are different.");
+    }
+    setLoading(false);
+  }, 1500); // Adjust the timeout to simulate processing time 
+};
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
@@ -29,6 +47,7 @@ function App() {
         </button>
       </div>
 
+    {/* Display the comparison result */}
       <div className="mt-6 w-full max-w-3xl bg-white p-4 rounded-lg shadow">
         <h2 className="text-lg font-semibold mb-2">Comparison Results:</h2>
         <p className="text-gray-600">
