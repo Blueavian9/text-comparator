@@ -14,8 +14,8 @@ function App() {
     setComparisonResult("");
     setResultType("");
 
-    let processedText1 = text1.trim(); // Start by trimming both texts
-    let processedText2 = text2.trim();
+    let processedText1 = text1;
+    let processedText2 = text2;
 
     if (!caseSensitive) {
       // Convert to lowercase if case-insensitive mode is selected
@@ -30,6 +30,7 @@ function App() {
     }
 
     setTimeout(() => {
+      // Example comparison logic: checking if texts are the same
       if (processedText1 === processedText2) {
         setComparisonResult("The texts are identical.");
         setResultType("success");
@@ -38,16 +39,7 @@ function App() {
         setResultType("error");
       }
       setLoading(false);
-    }, 1500); // Simulating an async operation
-  };
-
-  const handleReset = () => {
-    setText1("");
-    setText2("");
-    setComparisonResult("");
-    setResultType("");
-    setIgnoreSpaces(false);
-    setCaseSensitive(true);
+    }, 1500);
   };
 
   return (
@@ -67,27 +59,6 @@ function App() {
           value={text2}
           onChange={(e) => setText2(e.target.value)}
         />
-
-        {/* Comparison Mode Options */}
-        <div className="flex justify-between w-full max-w-3xl">
-          <div>
-            <label className="text-gray-700 mr-2">Case Sensitive</label>
-            <input
-              type="checkbox"
-              checked={caseSensitive}
-              onChange={() => setCaseSensitive(!caseSensitive)}
-            />
-          </div>
-          <div>
-            <label className="text-gray-700 mr-2">Ignore Spaces</label>
-            <input
-              type="checkbox"
-              checked={ignoreSpaces}
-              onChange={() => setIgnoreSpaces(!ignoreSpaces)}
-            />
-          </div>
-        </div>
-
         <button
           className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition"
           onClick={handleCompare}
@@ -97,13 +68,6 @@ function App() {
           ) : (
             "Compare"
           )}
-        </button>
-
-        <button
-          className="bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-600 transition mt-2"
-          onClick={handleReset}
-        >
-          Reset
         </button>
       </div>
 
@@ -121,7 +85,7 @@ function App() {
           {resultType === "success" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 mr-2 text-green-600"
+              className="w-4 h-4 mr-2 text-green-600" // Smaller check mark size
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -137,7 +101,7 @@ function App() {
           {resultType === "error" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 mr-2 text-red-600"
+              className="w-6 h-6 mr-2 text-red-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
