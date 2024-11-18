@@ -8,7 +8,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
       <h1 className="text-2xl font-bold mb-4 text-gray-800">Text Comparator</h1>
 
-      <div className="flex flex-col gap-4 w-full max-w-3xl">
+      <div className="flex flex-col gap-8 w-full max-w-3xl">
         <textarea
           className="border border-gray-300 rounded-lg p-3 w-full h-32"
           placeholder="Enter the first text here..."
