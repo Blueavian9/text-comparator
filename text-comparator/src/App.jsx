@@ -121,7 +121,7 @@ function App() {
           {resultType === "success" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 mr-2 text-green-600"
+              className="w-4 h-4 mr-2 text-green-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -137,7 +137,7 @@ function App() {
           {resultType === "error" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 mr-2 text-red-600"
+              className="w-4 h-4 mr-2 text-red-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
