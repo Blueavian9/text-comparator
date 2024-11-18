@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // State to hold the two texts and the comparison result
+  const [text1, setText1] = useState("");
+  const [text2, setText2] = useState("");
+  const [comparisonResult, setComparisonResult] = useState("");
+
+  // Function to handle the text comparison
+  const compareTexts = () => {
+    if (text1 === text2) {
+      setComparisonResult("The texts are identical.");
+    } else {
+      setComparisonResult("The texts are different.");
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+        <h1 className="text-2xl font-bold mb-4">Text Comparator</h1>
+        <div className="space-y-4">
+          <div>
+            <textarea
+              value={text1}
+              onChange={(e) => setText1(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
+              placeholder="Enter first text here..."
+              rows="5"
+            />
+          </div>
+          <div>
+            <textarea
+              value={text2}
+              onChange={(e) => setText2(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
+              placeholder="Enter second text here..."
+              rows="5"
+            />
+          </div>
+          <button
+            onClick={compareTexts}
+            className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+          >
+            Compare Texts
+          </button>
+          {comparisonResult && (
+            <p className="mt-4 text-center text-lg font-semibold">
+              {comparisonResult}
+            </p>
+          )}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
