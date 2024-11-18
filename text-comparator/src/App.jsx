@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
       <h1 className="text-2xl font-bold mb-4 text-gray-800">Text Comparator</h1>
-
-      <div className="flex flex-col gap-8 w-full max-w-3xl">
+      
+      <div className="flex flex-col gap-8 w-full max-w-3xl mx-8">
         <textarea
           className="border border-gray-300 rounded-lg p-3 w-full h-32"
           placeholder="Enter the first text here..."
@@ -31,9 +31,7 @@ function App() {
 
       <div className="mt-6 w-full max-w-3xl bg-white p-4 rounded-lg shadow">
         <h2 className="text-lg font-semibold mb-2">Comparison Results:</h2>
-        <p className="text-gray-600">
-          The results of the comparison will appear here.
-        </p>
+        <p className="text-gray-600">The results of the comparison will appear here.</p>
       </div>
     </div>
   );
