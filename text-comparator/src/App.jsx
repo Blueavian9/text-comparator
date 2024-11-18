@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function App() {
   const [text1, setText1] = useState("");
@@ -9,7 +10,7 @@ function App() {
   const [ignoreSpaces, setIgnoreSpaces] = useState(false); // New state for ignoring spaces
   const [caseSensitive, setCaseSensitive] = useState(true); // New State for case sensitivity
 
-  const handleCompare = () => {
+  const handleCompare = async () => {
     setLoading(true);
     setComparisonResult("");
     setResultType("");
@@ -17,29 +18,45 @@ function App() {
     let processedText1 = text1;
     let processedText2 = text2;
 
+    // Adjust texts based on options
     if (!caseSensitive) {
-      // Convert to lowercase if case-insensitive mode is selected
       processedText1 = processedText1.toLowerCase();
       processedText2 = processedText2.toLowerCase();
     }
-
     if (ignoreSpaces) {
-      // Remove spaces if the "ignore spaces" option is selected
       processedText1 = processedText1.replace(/\s+/g, "");
       processedText2 = processedText2.replace(/\s+/g, "");
     }
 
-    setTimeout(() => {
-      // Example comparison logic: checking if texts are the same
-      if (processedText1 === processedText2) {
+    try {
+      // Replace "YOUR_API_ENDPOINT" with your actual endpoint
+      const response = await axios.post(
+        "YOUR_API_ENDPOINT",
+        { text1: processedText1, text2: processedText2 },
+        {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+          },
+        }
+      );
+
+      // Assuming the API response contains a "match" field
+      const { match } = response.data;
+
+      if (match) {
         setComparisonResult("The texts are identical.");
         setResultType("success");
       } else {
         setComparisonResult("The texts are different.");
         setResultType("error");
       }
+    } catch (error) {
+      console.error("Error comparing texts:", error);
+      setComparisonResult("Error: Unable to compare texts.");
+      setResultType("error");
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -85,7 +102,7 @@ function App() {
           {resultType === "success" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 mr-2 text-green-600" // Smaller check mark size
+              className="w-4 h-4 mr-2 text-green-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
