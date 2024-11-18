@@ -19,7 +19,7 @@ function App() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
         <h1 className="text-2xl font-bold mb-4">Text Comparator</h1>
-        <div className="space-y-4">
+        <div className="space-y-4 bg-">
           <div>
             <textarea
               value={text1}
